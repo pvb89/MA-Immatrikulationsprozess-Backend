@@ -1,0 +1,352 @@
+swagger: "2.0"
+info:
+  description: "Description of the API Endpoints of the matriculation process"
+  version: "1.1.0"
+  title: "THB - Matriculation Process"
+  contact:
+    email: "pvonbehren@gmail.com"
+host: "localhost:4000"
+basePath: "/api"
+tags:
+- name: "user"
+  description: "Manage Users"
+- name: "course"
+  description: "Manage Courses"
+- name: "camunda"
+  description: "Manage Camunda Requests"
+schemes:
+- "http"
+- "https"
+paths:
+  /user/register:
+    post:
+      tags:
+      - "user"
+      summary: "Register a new User"
+      description: ""
+      operationId: "addUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Create a new User"
+        required: true
+        schema:
+          $ref: "#/definitions/UserRegistration"
+      responses:
+        "200":
+          description: "Request successful"
+          schema:
+            $ref: "#/definitions/ApiResponseSuccess"
+        "400":
+          description: "Request failed"
+          schema:
+            $ref: "#/definitions/ApiResponseFailed"
+  /user/login:
+    post:
+      tags:
+      - "user"
+      summary: "Login with Mail and Password"
+      operationId: "login"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Create a new User"
+        required: true
+        schema:
+          $ref: "#/definitions/UserLogin"
+      responses:
+        "200":
+          description: "Request successful"
+          schema:
+            $ref: "#/definitions/ApiResponseSuccess"
+        "400":
+          description: "Request failed"
+          schema:
+            $ref: "#/definitions/ApiResponseFailed"
+  /user/googleLogin:
+    post:
+      tags:
+      - "user"
+      summary: "Login with the google \"One-Time-Code\""
+      operationId: "googleLogin"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Login with the google \"One-Time-Code\" and create user if necessary"
+        required: true
+        schema:
+          $ref: "#/definitions/GoogleLogin"
+      responses:
+        "200":
+          description: "Request sucess"
+          schema:
+            $ref: "#/definitions/ApiResponseSuccess"
+        "400":
+          description: "Request failed"
+          schema:
+            $ref: "#/definitions/ApiResponseFailed"
+  /course/entry:
+    get:
+      tags:
+      - "course"
+      summary: "Read data of a Matriculation entrys"
+      description: "Returns a array of entrys"
+      operationId: "getCourseEntry"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "Request successful"
+        "400":
+          description: "Matriculation entry not found"
+          schema:
+            $ref: "#/definitions/ApiResponseFailed"
+  /course/entry:
+    post:
+      tags:
+      - "course"
+      summary: "Create a new Matriculation entry"
+      operationId: "postCourseEntry"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Create a new Matriculation entry"
+        required: true
+        schema:
+          $ref: "#/definitions/postEntry"
+      responses:
+        "200":
+          description: "Request successful"
+          schema:
+            $ref: "#/definitions/ApiResponseSuccess"
+        "400":
+          description: "Request failed"
+          schema:
+            $ref: "#/definitions/ApiResponseFailed"
+  /course/postEducationCertifcate:
+    post:
+      tags:
+      - "course"
+      summary: "Upload education certifate"
+      description: ""
+      operationId: "postEducationCertifcate"
+      consumes:
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "courseId"
+        in: "formData"
+        description: "ID of matriculation entry"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "educationCertificate"
+        in: "formData"
+        description: "Education certifate to upload"
+        required: false
+        type: "file"
+      responses:
+        "200":
+          description: "Request successful"
+          schema:
+            $ref: "#/definitions/ApiResponseSuccess"
+        "400":
+          description: "Request failed"
+          schema:
+            $ref: "#/definitions/ApiResponseFailed"
+  /camunda/getEducationCertifcate/{courseId}:
+    get:
+      tags:
+      - "camunda"
+      summary: "Get education certificate"
+      description: "Returns a PDF as binary"
+      operationId: "getEducationCertifcate"
+      produces:
+      - "application/x-binary"
+      parameters:
+      - name: "courseId"
+        in: "path"
+        description: "ID of matriculation entry to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Request successful"
+          schema:
+            $ref: "#/definitions/ApiResponseSuccess"
+        "400":
+          description: "Request failed"
+          schema:
+            $ref: "#/definitions/ApiResponseFailed"
+  /camunda/updateStatus:
+    put:
+      tags:
+      - "camunda"
+      summary: "Update status new Matriculation entry"
+      operationId: "updateStatus"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Update status of a Matriculation entry"
+        required: true
+        schema:
+          $ref: "#/definitions/UpdateStatus"
+      responses:
+        "200":
+          description: "Request successful"
+          schema:
+            $ref: "#/definitions/ApiResponseSuccess"
+        "400":
+          description: "Request failed"
+          schema:
+            $ref: "#/definitions/ApiResponseFailed"
+definitions:
+  UserLogin:
+    type: "object"
+    required:
+    - "mail"
+    - "password"
+    - "firstname"
+    - "lastname"
+    properties:
+      mail:
+        type: "string"
+      password:
+        type: "string"
+  GoogleLogin:
+    type: "object"
+    required:
+    - "mail"
+    - "password"
+    - "firstname"
+    - "lastname"
+    properties:
+      token:
+        type: "string"
+  UserRegistration:
+    type: "object"
+    required:
+    - "mail"
+    - "password"
+    - "firstname"
+    - "lastname"
+    properties:
+      mail:
+        type: "string"
+      password:
+        type: "string"
+      firstname:
+        type: "string"
+      lastname:
+        type: "string"
+  postEntry:
+    type: "object"
+    required:
+    - "userId"
+    properties:
+      userId:
+        type: "integer"
+        format: "int32"
+      courseId:
+        type: "integer"
+        format: "int32"
+      date:
+        type: "number"
+        format: "date"
+      gender:
+        type: "string"
+      bday:
+        type: "number"
+        format: "date"
+      birthplace:
+        type: "string"
+      birthcountry:
+        type: "string"
+      nationality:
+        type: "string"
+      street:
+        type: "string"
+      zipCode:
+        type: "number"
+      domicile:
+        type: "string"
+      country:
+        type: "string"
+      universityQualification:
+        type: "string"
+      averageGrade:
+        type: "number"
+      healthInsuranceStatus:
+        type: "boolean"
+        default: false
+      healthInsuranceName:
+        type: "string"
+      healthInsuranceNumber:
+        type: "number"
+      educationCertificateFile:
+        type: "string"
+  UpdateStatus:
+    type: "object"
+    required:
+    - "courseId"
+    - "status"
+    properties:
+      courseId:
+        type: "integer"
+        format: "int64"
+      statusId:
+        type: "integer"
+        description: "Matriculation Status"
+        enum:
+          - "1 - Antrag eingegangen"
+          - "2 - Dokumente prüfen"
+          - "3 - Dokumente fehlerhaft"
+          - "4 - Zahlungseingang erwartet"
+          - "5 - Immatrikuliert"
+          - "6 - Zahlungseingang fehlerhaft"
+          - "7 - NC nicht erreicht"
+  ApiResponseSuccess:
+    type: "object"
+    properties:
+      success:
+        type: "boolean"
+        default: true
+      message:
+        type: "string"
+      data:
+        type: "string"
+  ApiResponseFailed:
+    type: "object"
+    properties:
+      success:
+        type: "boolean"
+        default: false
+      message:
+        type: "string"
+      data:
+        type: "string"
+externalDocs:
+  description: "Github Link to the Backend"
+  url: "http://github.com/pvb89/Imma-Backend"

@@ -1,0 +1,20 @@
+{
+   "type": "mysql",
+   "host": "localhost",
+   "port": 3306,
+   "username": "root",
+   "password": "thb",
+   "database": "immatrikulation",
+   "synchronize": true,
+   "logging": false,
+   "entities": [
+      "build/models/entity/**/*.js"
+   ],
+   "migrations": [
+      "build/models/migration/**/*.js"
+   ],
+   "cli": {
+      "entitiesDir": "build/models/entity",
+      "migrationDir": "build/models/migration/**/*.js"
+   }
+}
