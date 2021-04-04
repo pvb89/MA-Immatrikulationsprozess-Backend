@@ -37,7 +37,7 @@
    },
    "scripts": {
       "start": "node ./build/index.js",
-      "compile": "tsc && node ./build/index.js",
+      "compile": "tsc",
       "dev": "nodemon -e ts --exec \"npm run compile\""
    }
 }
