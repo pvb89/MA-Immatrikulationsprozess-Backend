@@ -1,5 +1,5 @@
 {
-   "name": "typeorm",
+   "name": "pvb-imma",
    "version": "0.0.1",
    "description": "Awesome project developed with TypeORM.",
    "devDependencies": {
@@ -20,7 +20,7 @@
       "@types/mysql": "^2.15.18",
       "@types/node": "^8.0.29",
       "@types/node-fetch": "^2.5.8",
-      "bcrypt": "^5.0.0",
+      "bcrypt": "5.0.1",
       "body-parser": "^1.18.1",
       "class-validator": "^0.12.2",
       "cors": "^2.8.5",
@@ -36,7 +36,7 @@
       "yamljs": "^0.3.0"
    },
    "scripts": {
-      "start": "node ./build/index.js",
+      "start": "ts-node src/index.ts",
       "compile": "tsc && node ./build/index.js",
       "dev": "nodemon -e ts --exec \"npm run compile\""
    }
