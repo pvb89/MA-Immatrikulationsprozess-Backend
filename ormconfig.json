@@ -1,10 +1,10 @@
 {
    "type": "mysql",
-   "host": "localhost",
+   "host": "pvb-database.mysql.database.azure.com",
    "port": 3306,
-   "username": "root",
-   "password": "thb",
-   "database": "immatrikulation",
+   "username": "pvb@pvb-database",
+   "password": "AzureDB@2021",
+   "database": "test",
    "synchronize": true,
    "logging": false,
    "entities": [
