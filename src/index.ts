@@ -11,8 +11,8 @@ import { middleware } from './middleware/errorHandler';
 import YAML = require('yamljs');
 
 // Datenbank Schema erstellen und Initialdaten laden
-// const initialService = InitialDataService.Instance();
-// initialService.create()
+const initialService = InitialDataService.Instance();
+initialService.create()
 
 // load enviroment variables
 dotenv.config()
@@ -25,15 +25,15 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // create Swagger instance and bind it to a Route
-// const swaggerDocument = YAML.load('./services/swagger.yaml');
-// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+const swaggerDocument = YAML.load('./services/swagger.yaml');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // create routes
-// app.use('/api', routes);
+app.use('/api', routes);
 app.get('/health', (req, res) => res.json({ status: true, message: 'Health OK!' }));
 
 // handle errors (after routes)
-// app.use(middleware.handleRequestError);
+app.use(middleware.handleRequestError);
 
 // start express server
 app.listen(process.env.PORT || process.env.LOCAL_PORT, () => {
