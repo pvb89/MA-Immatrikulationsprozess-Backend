@@ -36,7 +36,7 @@
       "yamljs": "^0.3.0"
    },
    "scripts": {
-      "start": "ts-node src/index.ts",
+      "start": "node ./build/index.js",
       "compile": "tsc && node ./build/index.js",
       "dev": "nodemon -e ts --exec \"npm run compile\""
    }
