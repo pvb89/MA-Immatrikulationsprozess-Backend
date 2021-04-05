@@ -5,7 +5,7 @@ class InitialDataService {
 
     static instance: InitialDataService;
     private connection;
-    private dbName = process.env.DB_NAME
+    private dbName = "test"
 
     constructor() {
         this.connection = mysql.createConnection({

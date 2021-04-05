@@ -38,5 +38,5 @@ app.use(middleware.handleRequestError);
 
 // start express server
 app.listen(process.env.PORT || process.env.LOCAL_PORT, () => {
-    console.log(`Example app listening at http://localhost:${process.env.PORT || process.env.LOCAL_PORT}`);
+    console.log(`App running on Port ${process.env.PORT || process.env.LOCAL_PORT}`);
   })
