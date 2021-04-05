@@ -9,9 +9,9 @@ class InitialDataService {
 
     constructor() {
         this.connection = mysql.createConnection({
-            host: process.env.DB_HOST,
-            user: process.env.DB_USER,
-            password: process.env.DB_PASS,
+            host: "pvb-database.mysql.database.azure.com",
+            user: "pvb@pvb-database",
+            password: "AzureDB@2021",
             ssl: {
                 rejectUnauthorized: false
             }
