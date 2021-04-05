@@ -9,7 +9,7 @@ class CamundaService {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/octet-stream',
-                    'Authorization': "Bearer vgXap/rReehmx+XLYVYGHxlt9GMeQIWlWzWYhsbacw3gSyjcXtbrkldeQBCXGoABMQaZVN8g+ww8Tu33SmihjPoB4U55aM4C/SV1uMMwXaE=&_z_A0V5ayCTfntt8TrRZ_x--XgSEm4Wg8ryuAwIuk47Cd1eUapzxTTygZ6AQBWZBsZKy5_iCV0d2-ePIdsLfmkpZdO34-Qhf",
+                    'Authorization': 'Bearer vgXap/rReehmx+XLYVYGHxlt9GMeQIWlWzWYhsbacw3gSyjcXtbrkldeQBCXGoABMQaZVN8g+ww8Tu33SmihjPoB4U55aM4C/SV1uMMwXaE=&_z_A0V5ayCTfntt8TrRZ_x--XgSEm4Wg8ryuAwIuk47Cd1eUapzxTTygZ6AQBWZBsZKy5_iCV0d2-ePIdsLfmkpZdO34-Qhf'
                 }
             });
         } catch (error) {
