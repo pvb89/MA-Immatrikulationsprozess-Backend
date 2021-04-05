@@ -10,7 +10,7 @@ class CamundaController {
     let buffer: any;
     try {
       // Dokumenten ID auslesen und anschließend vom DMS laden
-      const courseEntry: any = await courseService.findOneCourseEntryById(30)
+      const courseEntry: any = await courseService.findOneCourseEntryById(parseInt(req.params.id, 10))
       const document = await camundaService.getDocument(courseEntry.educationCertificateFile)
       buffer = await document.buffer();
     } catch (error) {
