@@ -63,7 +63,7 @@ class CourseService {
                 }).where("id = :id", { id: courseId })
                 .execute();
         } catch (error) {
-            return Promise.reject(new APIError('Update state failed'));
+            return Promise.reject(new APIError('Update process Id failed'));
         }
     }
     async updateEducationCertificate(fileId: string, courseId: number): Promise<Entry | any> {

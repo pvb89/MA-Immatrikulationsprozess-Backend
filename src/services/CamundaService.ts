@@ -26,7 +26,7 @@ class CamundaService {
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            });
+            }).then(response=>response.json());
         } catch (error) {
             return Promise.reject(new APIError('Start camunda process failed'));
         }
