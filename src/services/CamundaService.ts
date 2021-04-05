@@ -5,12 +5,13 @@ import { APIError } from './ResponseService';
 class CamundaService {
     async getDocument(fileId: number): Promise<any> {
         try {
-            const codiaUrl = ""
-            return await fetch(process.env.DMS_CODIA_BASE_URL + '/o2/' + fileId + '/v/1_1/b/P1/c', {
+            const codiaUrl = "https://thb-immatrikulation-v2.d-velop.cloud/dms/r/b60769af-3f7d-4d12-95b4-3c8738052628"
+            const codiaAuth = "Bearer vgXap/rReehmx+XLYVYGHxlt9GMeQIWlWzWYhsbacw3gSyjcXtbrkldeQBCXGoABMQaZVN8g+ww8Tu33SmihjPoB4U55aM4C/SV1uMMwXaE=&_z_A0V5ayCTfntt8TrRZ_x--XgSEm4Wg8ryuAwIuk47Cd1eUapzxTTygZ6AQBWZBsZKy5_iCV0d2-ePIdsLfmkpZdO34-Qhf"
+            return await fetch(codiaUrl + '/o2/' + fileId + '/v/1_1/b/P1/c', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/octet-stream',
-                    'Authorization': process.env.DMS_CODIA_AUTH,
+                    'Authorization': codiaAuth,
                 }
             });
         } catch (error) {
