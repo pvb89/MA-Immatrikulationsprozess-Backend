@@ -9,6 +9,8 @@ import * as swaggerUi from 'swagger-ui-express';
 import { routes } from './routes/index';
 import { middleware } from './middleware/errorHandler';
 import YAML = require('yamljs');
+import { SimpleConsoleLogger } from "typeorm";
+import path = require("path");
 
 // Datenbank Schema erstellen und Initialdaten laden
 const initialService = InitialDataService.Instance();
@@ -26,6 +28,7 @@ app.use(cors());
 
 // create Swagger instance and bind it to a Route
 console.log("__dirname", __dirname)
+console.log("path.resolve()", path.resolve("./"));
 const swaggerDocument = YAML.load('/home/site/wwwroot/swagger.yaml');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 

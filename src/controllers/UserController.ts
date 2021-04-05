@@ -5,7 +5,7 @@ import { User } from "../models/entity/User";
 import UserService from "../services/UserService"
 import AuthentificationService from "../services/AuthentificationService";
 import { IUser } from "../models/IUser";
-const {google} = require('googleapis');
+const { google } = require('googleapis');
 
 const service = new UserService();
 
@@ -78,10 +78,15 @@ class UserController {
     let userId: any;
 
     // One-time-Code exchangen & Benutzerinformationen anfordern
+    // const oauth2Client2 = new google.auth.OAuth2(
+    //   process.env.GOOGLE_CLIENT_ID,
+    //   process.env.GOOGLE_CLIENT_SECRET,
+    //   process.env.GOOGLE_REDIRECT_URL
+    // );
     const oauth2Client2 = new google.auth.OAuth2(
-      process.env.GOOGLE_CLIENT_ID,
-      process.env.GOOGLE_CLIENT_SECRET,
-      process.env.GOOGLE_REDIRECT_URL
+      "886486899739-h24t9ghtom4daj8omcfneo6k6f8c9dp0.apps.googleusercontent.com",
+      "qvj3ddxWsPJdIErd3_I6YrSO",
+      "postmessage"
     );
     const { tokens } = await oauth2Client2.getToken(req.body.token)
     oauth2Client2.setCredentials(tokens);
