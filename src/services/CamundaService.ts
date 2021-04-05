@@ -5,7 +5,7 @@ import { APIError } from './ResponseService';
 class CamundaService {
     async getDocument(fileId: number): Promise<any> {
         try {
-            return await fetch('https://thb-immatrikulation-v2.d-velop.cloud/dms/r/b60769af-3f7d-4d12-95b4-3c8738052628/o2/' + fileId + '/v/1_1/b/P1/c', {
+            return await fetch('https://thb-immatrikulation-v2.d-velop.cloud/dms/r/b60769af-3f7d-4d12-95b4-3c8738052628/o2/' + fileId + '/v/1_1/b/main/c', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/octet-stream',
