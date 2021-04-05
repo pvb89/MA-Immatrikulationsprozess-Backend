@@ -20,6 +20,7 @@ class CourseService {
             const course: any = await getRepository('Entry').findOneOrFail({ id: courseEntryId });
             return course
         } catch (error) {
+            console.log("error", error);
             return Promise.reject(new APIError('Get course entry failed'));
         }
     }
