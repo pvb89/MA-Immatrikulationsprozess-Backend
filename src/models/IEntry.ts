@@ -23,4 +23,5 @@ export interface IEntry {
     healthInsuranceName: string;
     healthInsuranceNumber: number;
     educationCertificateFile: string;
+    processId: string;
 }

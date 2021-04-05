@@ -88,6 +88,11 @@ export class Entry {
     // @IsNotEmpty()
     educationCertificateFile: string
 
+    @Column()
+    @IsString()
+    // @IsNotEmpty()
+    processId: string
+
     @ManyToOne(type => User, user => user.id, { eager: true, onDelete: 'CASCADE'})
     user: User;
 

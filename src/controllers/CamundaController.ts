@@ -27,6 +27,8 @@ class CamundaController {
   public static startProcess = async (req: Request, res: Response, next: any) => {
     try {
       await camundaService.startProcess(req.body);
+      // courseService.updateProcessId()
+
     } catch (error) {
       return next(error)
     }

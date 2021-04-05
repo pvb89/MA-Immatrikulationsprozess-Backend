@@ -53,6 +53,19 @@ class CourseService {
             return Promise.reject(new APIError('Update state failed'));
         }
     }
+    async updateProcessId(processId: string, courseId: number): Promise<Entry | any> {
+        try {
+            return await getConnection()
+                .createQueryBuilder()
+                .update(Entry)
+                .set({
+                    processId: processId
+                }).where("id = :id", { id: courseId })
+                .execute();
+        } catch (error) {
+            return Promise.reject(new APIError('Update state failed'));
+        }
+    }
     async updateEducationCertificate(fileId: string, courseId: number): Promise<Entry | any> {
         try {
             return await getConnection()
