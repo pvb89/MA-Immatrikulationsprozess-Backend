@@ -69,41 +69,41 @@ class CourseService {
         let fileId: string;
         try {
             // Dokument hochladen
-            const resTemp = await fetch(process.env.DMS_CODIA_BASE_URL + '/blob/chunk', {
+            const resTemp = await fetch('https://thb-immatrikulation-v2.d-velop.cloud/dms/r/b60769af-3f7d-4d12-95b4-3c8738052628/blob/chunk', {
                 method: 'POST',
                 body: file,
                 headers: {
                     'Content-Type': 'application/octet-stream',
-                    'Authorization': process.env.DMS_CODIA_AUTH,
+                    'Authorization': "Bearer vgXap/rReehmx+XLYVYGHxlt9GMeQIWlWzWYhsbacw3gSyjcXtbrkldeQBCXGoABMQaZVN8g+ww8Tu33SmihjPoB4U55aM4C/SV1uMMwXaE=&_z_A0V5ayCTfntt8TrRZ_x--XgSEm4Wg8ryuAwIuk47Cd1eUapzxTTygZ6AQBWZBsZKy5_iCV0d2-ePIdsLfmkpZdO34-Qhf",
                 }
             });
             const tempFileName = resTemp.headers.get('location');
             const body = {
                 filename: fileName,
-                sourceCategory: "9827b",
-                sourceId: "/dms/r/87e12fe0-c015-45d5-ad12-1e1863045890/source",
+                sourceCategory: "f3e42",
+                sourceId: "/dms/r/b60769af-3f7d-4d12-95b4-3c8738052628/source",
                 contentLocationUri: tempFileName,
                 sourceProperties: {
                     properties: [{
-                        key: "16",
+                        key: "1",
                         values: [user.mail]
                     },
                     {
-                        key: "21",
+                        key: "2",
                         values: [user.firstname]
                     },
                     {
-                        key: "22",
+                        key: "3",
                         values: [user.lastname]
                     }]
                 }
             };
             // Dokument eintragen
-            const resUp = await fetch(process.env.DMS_CODIA_BASE_URL + '/o2m', {
+            const resUp = await fetch('https://thb-immatrikulation-v2.d-velop.cloud/dms/r/b60769af-3f7d-4d12-95b4-3c8738052628/o2m', {
                 method: 'POST',
                 body: JSON.stringify(body),
                 headers: {
-                    'Authorization': process.env.DMS_CODIA_AUTH,
+                    'Authorization': "Bearer vgXap/rReehmx+XLYVYGHxlt9GMeQIWlWzWYhsbacw3gSyjcXtbrkldeQBCXGoABMQaZVN8g+ww8Tu33SmihjPoB4U55aM4C/SV1uMMwXaE=&_z_A0V5ayCTfntt8TrRZ_x--XgSEm4Wg8ryuAwIuk47Cd1eUapzxTTygZ6AQBWZBsZKy5_iCV0d2-ePIdsLfmkpZdO34-Qhf",
                 }
             })
             fileId = resUp.headers.get('Location').split('/')[5].substring(0, 10);
