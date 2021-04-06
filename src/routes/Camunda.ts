@@ -8,5 +8,6 @@ const router = Router();
 router.post('/startProcess', [checkJWT], Controller.startProcess);
 router.get('/getDocument/:id', Controller.getDocument);
 router.put('/updateStatus', CourseController.updateStatus);
+router.post('/triggerProcess', Controller.triggerProcess);
 
 export default router;

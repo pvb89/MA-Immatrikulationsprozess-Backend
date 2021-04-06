@@ -27,8 +27,6 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // create Swagger instance and bind it to a Route
-console.log("__dirname", __dirname)
-console.log("path.resolve()", path.resolve("./"));
 const swaggerDocument = YAML.load('/home/site/wwwroot/swagger.yaml');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
