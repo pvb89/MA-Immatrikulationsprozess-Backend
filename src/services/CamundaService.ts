@@ -18,7 +18,7 @@ class CamundaService {
     }
     async startProcess(data: any): Promise<any> {
         // const camundaUrl = process.env.CAMUNDA_URL + process.env.CAMUNDA_PROCESS_ID + '/start';
-        const camundaUrl = "http://pvb-camunda-v2.westeurope.azurecontainer.io:8080/engine-rest/process-definition/Immatrikulations_Prozess:3:708e56d9-96dc-11eb-adfd-00155d6e8f68/start"
+        const camundaUrl = "http://pvb-camunda-v2.westeurope.azurecontainer.io:8080/engine-rest/process-definition/Immatrikulations_Prozess:2:07474829-96de-11eb-adfd-00155d6e8f68/start"
         try {
             return await fetch(camundaUrl, {
                 method: 'POST',
