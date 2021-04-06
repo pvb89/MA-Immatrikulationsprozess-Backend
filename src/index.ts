@@ -12,12 +12,12 @@ import YAML = require('yamljs');
 import { SimpleConsoleLogger } from "typeorm";
 import path = require("path");
 
+// load enviroment variables
+dotenv.config()
+
 // Datenbank Schema erstellen und Initialdaten laden
 const initialService = InitialDataService.Instance();
 initialService.create()
-
-// load enviroment variables
-dotenv.config()
 
 // create express app
 const app: Application = express();

@@ -16,7 +16,6 @@ class CamundaController {
     } catch (error) {
       return next(error);
     }
-
     // Response senden
     res.writeHead(200, {
       'Content-Type': 'application/pdf',
