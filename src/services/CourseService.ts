@@ -15,7 +15,7 @@ class CourseService {
             return Promise.reject(new APIError('Get course failed'));
         }
     }
-    async findOneCourseEntryById(courseEntryId: number): Promise<Course | null> {
+    async findOneCourseEntryById(courseEntryId: number): Promise<Entry | null> {
         try {
             const course: any = await getRepository('Entry').findOneOrFail({ id: courseEntryId });
             return course
