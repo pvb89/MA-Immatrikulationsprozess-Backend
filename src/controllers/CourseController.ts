@@ -45,6 +45,7 @@ class CourseController {
     }
 
     public static updateStatus = async (req: Request, res: Response, next: any) => {
+        console.log("updateStatus Bugfix", req.body);
         const { statusId, courseId } = req.body;
         try {
             await courseService.updateState(statusId, courseId)

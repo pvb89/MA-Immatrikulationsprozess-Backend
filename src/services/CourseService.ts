@@ -50,6 +50,7 @@ class CourseService {
                 }).where("id = :id", { id: courseId })
                 .execute();
         } catch (error) {
+            console.log("updateState Bugfix ERROR", error);
             return Promise.reject(new APIError('Update state failed'));
         }
     }
