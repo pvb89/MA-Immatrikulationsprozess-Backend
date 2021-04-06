@@ -26,10 +26,33 @@ class CamundaService {
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            }).then(response=>response.json());
+            }).then(response => response.json());
         } catch (error) {
             return Promise.reject(new APIError('Start camunda process failed'));
         }
+    }
+    async getTask(processId: any): Promise<any> {
+        const camundaUrl = 'http://pvb-camunda-v2.westeurope.azurecontainer.io:8080/engine-rest';
+        try {
+            const taskList = await fetch(camundaUrl + '/task', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => response.json());
+            return taskList.filter(task => task.processInstanceId == processId);
+        } catch (error) {
+            return Promise.reject(new APIError('Get Camunda Tasklist failed'));
+        }
+    }
+    async completeTask(taskId: any): Promise<any> {
+        const camundaUrl = 'http://pvb-camunda-v2.westeurope.azurecontainer.io:8080/engine-rest';
+        return await fetch(`${camundaUrl}/task/${taskId}/complete`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
     }
 }
 

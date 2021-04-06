@@ -27,8 +27,22 @@ class CamundaController {
   public static startProcess = async (req: Request, res: Response, next: any) => {
     try {
       const processId = await camundaService.startProcess(req.body);
-      await courseService.updateProcessId(processId.id, req.body.variables.courseEntryId.value)
-
+      courseService.updateProcessId(processId.id, req.body.variables.courseEntryId.value);
+    } catch (error) {
+      return next(error)
+    }
+    // Response senden
+    res.json({
+      success: true,
+      message: "Start camunda process succesfully",
+      data: {}
+    });
+  }
+  public static triggerProcess = async (req: Request, res: Response, next: any) => {
+    try {
+      const courseEntry = await courseService.findOneCourseEntryById(parseInt(req.body.id, 10))
+      const task = await camundaService.getTask(courseEntry.processId);
+      await camundaService.completeTask(task[0].id);
     } catch (error) {
       return next(error)
     }
