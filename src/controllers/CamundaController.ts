@@ -48,7 +48,7 @@ class CamundaController {
     // Response senden
     res.json({
       success: true,
-      message: "Start camunda process succesfully",
+      message: "Trigger camunda process succesfully",
       data: {}
     });
   }
